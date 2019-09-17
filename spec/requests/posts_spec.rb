@@ -20,7 +20,7 @@ RSpec.describe 'Posts', type: :request do
     let(:posts) { create_list(:post, 10, published: true) }
     it 'should return all the published posts' do 
       payload = JSON.parse(response.body)
-      expect(payload.seze).to eq(posts.size)
+      expect(payload.size).to eq(posts.size)
       expect(response).to have_http_status(200)
     end
   end
@@ -30,7 +30,7 @@ RSpec.describe 'Posts', type: :request do
     it 'should return a post' do 
       get "/post#{post.id}"
       payload = JSON.parse(response.body)
-      expect(payload.seze).to_not be_empty
+      expect(payload.size).to_not be_empty
       expect(payload["id"]).to eq(post.id)
       expect(response).to have_http_status(200)
     end
