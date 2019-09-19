@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   rescue_from ActiveRecord::RecordInvalid do |e|
-    #log.error "#{e.message}" good practice ∫
+    #log.error "#{e.message}" good practice 
     render json: {error: e.message}, status: :unprocessable_entity
   end
 
