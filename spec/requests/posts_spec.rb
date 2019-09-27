@@ -19,9 +19,9 @@ RSpec.describe 'Posts', type: :request do
       it "should filter posts by title" do 
         get "/posts?search=Hola"
         payload = JSON.parse(response.body)
-        expect(payload).not_to be_empty
+        expect(payload).to_not be_empty
         expect(payload.size).to eq(2)
-        expect(payload.map {|p| p['id'] }.sort).to eq([hola_mundo.id, hola_rails.id].sort)
+        expect(payload.map { |p| p["id"] }.sort).to eq([hola_mundo.id, hola_rails.id].sort)
         expect(response).to have_http_status(200)
       end
     end
