@@ -4,6 +4,7 @@ RSpec.describe 'Posts with authentication', type: :request do
   
   let!(:user) {create(:user)}
   let!(:other_user){create(:user)}
+  
   let!(:user_post){create(:post, user_id: user.id)}
   let!(:other_user_post){create(:post, user_id: other_user.id, published: true)}
   let!(:other_user_post_draft){create(:post, user_id: other_user.id, published: false)}
