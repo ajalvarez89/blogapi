@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe 'Posts with authentication', type: :request do
   let!(:user) {create(:user)}
   let!(:other_user){create(:user)}
@@ -38,7 +37,7 @@ RSpec.describe 'Posts with authentication', type: :request do
             subject { response }
             it {is_expected.to have_http_status(:not_found)}
           end
-        end
+        end 
       end
       context "when requisiting user's post" do 
       end
@@ -51,11 +50,3 @@ RSpec.describe 'Posts with authentication', type: :request do
   describe "PUT /posts" do 
   end
 end
-
-
-  
-    # it 'should return all the published posts' do 
-    #   payload = JSON.parse(response.body)
-    #   expect(payload.size).to eq(posts.size)
-    #   expect(response).to have_http_status(200)
-    # end
