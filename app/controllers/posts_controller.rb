@@ -64,6 +64,6 @@ class PostsController < ApplicationController
       end
     end
 
-    render json:{error: 'Unauthorized'}, status :unauthorized
+    render json:{error: 'Unauthorized'}, status: :unauthorized
   end
 end
