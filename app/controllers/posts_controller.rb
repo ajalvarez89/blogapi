@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update]
   # Remember
   # Todas las exceptciones heredan de Exception, entre mas abajo se declaren las ex mas prevalencia tendran. ∫
   #recue_from // to manage exeption
@@ -47,5 +48,22 @@ class PostsController < ApplicationController
 
   def update_params
     params.required(:post).permit(:title, :content, :published)
+  end
+
+  def authenticate_user!
+    #Bearer xxxx
+    token_regex = /Bearer (\w+)/
+    #leer HEADER de auth
+    headers = request.headers
+    # verificar que sea valido
+    if headers['Authorization'].present? && headers['Authorization'].match(token_regex)
+      token = headers['Authorization'].match(token_regex)[1]
+    # debemos verificar que el token corresponda a un usuario
+      if (Curren.user = User.find_by_auth_token(token))
+        return 
+      end
+    end
+
+    render json:{error: 'Unauthorized'}, status :unauthorized
   end
 end
